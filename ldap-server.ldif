@@ -1,0 +1,52 @@
+version: 1
+
+dn: dc=arima,dc=eu
+objectclass: domain
+objectclass: top
+dc: arima
+
+dn: ou=people,dc=arima,dc=eu
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+
+dn: ou=groups,dc=arima,dc=eu
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: cn=user,ou=groups,dc=arima,dc=eu
+objectClass: groupOfNames
+objectClass: top
+cn: user
+member: uid=admin,ou=people,dc=arima,dc=eu
+member: uid=testuser,ou=people,dc=arima,dc=eu
+
+dn: uid=admin,ou=people,dc=arima,dc=eu
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Arima Admin
+sn: Admin
+uid: admin
+userPassword:: e1NTSEF9MVRVeFV1Y1hZbTVLaWRIWFJiQ1ZSMUFsVW1uOGRFbGMyNXpuVWc9P
+ Q==
+
+dn: uid=testuser,ou=people,dc=arima,dc=eu
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Test User
+sn: testuser
+uid: testuser
+userPassword:: e1NTSEF9TVFNbFhPWlJXeFl5dVl0WHFkbkxtZVN4UDRxZHNuc2lWSjBybVE9P
+ Q==
+
+dn: cn=admin,ou=groups,dc=arima,dc=eu
+objectClass: groupOfNames
+objectClass: top
+cn: admin
+member: uid=admin,ou=people,dc=arima,dc=eu
+

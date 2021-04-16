@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  # auth server
+  auth_server:
+    build: ./auth-server
+    ports:
+      - '9000:9000'
+    networks: 
+      - internal
+
+  # front application server through a simple http server
+  front:
+    image: httpd:2.4
+    volumes:
+      - './webapp:/usr/local/apache2/htdocs'
+    ports: 
+      - '8081:80'
+    networks: 
+      - internal
+        
+  # ldap server
+  openldap:
+    image: bitnami/openldap:2
+    ports:
+      - '1389:1389'
+      - '1636:1636'
+    environment:
+      - LDAP_ROOT=dc=arima,dc=eu
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=arima
+      - LDAP_CUSTOM_LDIF_DIR=/workspace
+    volumes:
+      - './ldap-server.ldif:/workspace/ldap-server.ldif'
+    networks:
+      - internal
+
+networks: 
+  internal:
